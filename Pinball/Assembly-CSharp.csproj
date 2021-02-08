@@ -186,6 +186,7 @@
     <Compile Include="Assets\Scripts\Pinball\Defines.cs" />
     <Compile Include="Assets\Scripts\Pinball\GameManager.cs" />
     <Compile Include="Assets\Scripts\Pinball\SceneObecjt\Ball.cs" />
+    <Compile Include="Assets\Scripts\Pinball\SceneObecjt\Block.cs" />
     <Compile Include="Assets\Scripts\Pinball\SceneObecjt\Launcher.cs" />
     <Compile Include="Assets\Scripts\Pinball\SceneObecjt\Map.cs" />
     <Compile Include="Assets\Scripts\Pinball\SceneObecjt\Player.cs" />

@@ -6,6 +6,7 @@ public class Launcher : MonoBehaviour
 {
     public float m_rotRange = 30;
     public float m_rotSpeed = 5;
+    public Transform Turret;
 
     public float m_curRot = 0;
     public bool m_isToLeft = true;
@@ -14,21 +15,26 @@ public class Launcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_curRot += m_rotSpeed * Time.deltaTime * (m_isToLeft ? 1 : -1);
+        
+    }
+
+    private void FixedUpdate()
+    {
+        m_curRot += m_rotSpeed * Time.fixedDeltaTime * (m_isToLeft ? 1 : -1);
         //right max
-        if(m_curRot <= -m_rotRange)
+        if (m_curRot <= -m_rotRange)
         {
             m_curRot = -m_rotRange;
             m_isToLeft = true;
         }
         //left max
-        else if(m_curRot >= m_rotRange)
+        else if (m_curRot >= m_rotRange)
         {
             m_curRot = m_rotRange;
             m_isToLeft = false;
         }
 
-        transform.localRotation = Quaternion.Euler(0, 0, m_curRot);
+        Turret.localRotation = Quaternion.Euler(0, 0, m_curRot);
     }
 
     public void DoRot()
@@ -39,7 +45,7 @@ public class Launcher : MonoBehaviour
     public void OnFire()
     {
         m_isRoting = false;
-        GameManager.Instance.FireBall(new Vector2(transform.forward.x, transform.forward.y));
-         //transform.forward
+        GameManager.Instance.FireBall(new Vector2(Turret.up.x, Turret.up.y));
+        //transform.forward
     }
 }

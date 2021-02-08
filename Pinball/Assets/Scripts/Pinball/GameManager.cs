@@ -14,43 +14,65 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject ballPrefab;
-    public GameObject skillPrefab;
+
+    public Launcher m_playerLauncher;
+    public Launcher m_npcLauncher;
+
+    public Transform m_playerFirePos;
+    public Transform m_npcFirePos;
+
+    public GameObject GameRoot;
 
     private void Awake()
     {
-        _instance = Instance;
+        _instance = this;
         GameObject.DontDestroyOnLoad(gameObject);
-        Init();
-        
     }
 
     private void Start()
     {
-        
+        Init();
+
+        //start ui
+
+        StartGame();
     }
 
     public void Init()
     {
-        SkillConfig.LoadConfig();
-        MapConfig.LoadConfig();
+        IsGameStart = false;
 
-        SimplePool.Preload(ballPrefab, 5);
-        SimplePool.Preload(skillPrefab, 10);
+        //SkillConfig.LoadConfig();
+        //MapConfig.LoadConfig();
+
+        SimplePool.Preload(ballPrefab, 1);
+
+        m_curBall = SimplePool.Spawn(ballPrefab,Vector3.zero,Quaternion.Euler(0,0,0)).GetComponent<Ball>();
+        m_curBall.transform.parent = GameRoot.transform;
+        m_curBall.gameObject.SetActive(false);
+
+        m_playerLauncher.gameObject.SetActive(false);
+        m_npcLauncher.gameObject.SetActive(false);
+
     }
 
-    
+
     #region game logic
 
+    public bool IsGameStart = false;
     public bool IsPlayerRound = false;
 
     public Player m_player;
     public Player m_npc;
 
+
     public int m_curRound = 1;
 
-    public void DoDamage(bool isPlayer, Ball ball)
+    public Ball m_curBall = null;
+
+    public void DoDamage(Ball ball)
     {
-        if(isPlayer)
+        if(!IsPlayerRound)
         {
             m_player.OnDamage(ball);
         }
@@ -58,11 +80,25 @@ public class GameManager : MonoBehaviour
         {
             m_npc.OnDamage(ball);
         }
+
+        //effect
+
+
+        SwitchTurn();
+    }
+
+    public void DoRelease(Ball ball)
+    {
+        //if()
+        SwitchTurn();
     }
 
     public void FireBall(Vector2 dir)
     {
-
+        Transform tt = IsPlayerRound ? m_playerFirePos.transform : m_npcFirePos;
+        m_curBall.gameObject.SetActive(true);
+        m_curBall.transform.position = new Vector3(tt.position.x, tt.position.y, tt.position.z);
+        m_curBall.Fire(dir);
     }
 
     public void StartGame()
@@ -72,26 +108,67 @@ public class GameManager : MonoBehaviour
         m_npc = new Player();
         m_npc.Init(false);
 
+        m_curBall.gameObject.SetActive(false);
+
+        //launcher init pos,rot
+        m_playerLauncher.gameObject.SetActive(false);
+        m_npcLauncher.gameObject.SetActive(false);
+
         //VS UI
 
+        IsGameStart = true;
         //start round1
         StartRound(1);
     }
 
     public void GameOver(bool isWin)
     {
-
+        
     }
 
     public void StartRound(int roundIndex)
     {
         m_curRound = 1;
+        //round ui
 
+        IsPlayerRound = false;
+        SwitchTurn();
     }
 
     public void SwitchTurn()
     {
+        IsPlayerRound = false;
         IsPlayerRound = !IsPlayerRound;
+
+        //player ui
+
+        m_curBall.gameObject.SetActive(false);
+        if(IsPlayerRound)
+        {
+            //set ball
+            //m_curBall.transform.localPosition
+            //set lanucher
+            m_playerLauncher.gameObject.SetActive(true);
+            m_npcLauncher.gameObject.SetActive(false);
+            m_playerLauncher.DoRot();
+        }
+        else
+        {
+            m_playerLauncher.gameObject.SetActive(false);
+            m_npcLauncher.gameObject.SetActive(true);
+            m_npcLauncher.DoRot();
+        }
+
+    }
+
+    public void ClickFire()
+    {
+        if(!IsGameStart || !IsPlayerRound)
+        {
+            return;
+        }
+
+        m_playerLauncher.OnFire();
     }
     #endregion
 

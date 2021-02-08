@@ -8,14 +8,8 @@ public class Ball : MonoBehaviour
     public float m_accelerate;
 
     public float m_baseAttack;
-    public float m_damage
-    {
-        get
-        {
-            return m_baseAttack;
-        }
-    }
-    
+   
+
     public Vector2 m_direction;
 
     public bool m_isOnfire = false;
@@ -23,6 +17,15 @@ public class Ball : MonoBehaviour
     private void Update()
     {
         if(m_isOnfire)
+        {
+            backTime += Time.deltaTime;
+            UpdatePosition();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_isOnfire)
         {
             UpdatePosition();
         }
@@ -35,6 +38,7 @@ public class Ball : MonoBehaviour
         transform.localPosition = new Vector3(transform.localPosition.x + moveX, transform.localPosition.y + moveY, 0);
     }
 
+    float backTime = 0;
     public void OnTriggerEnter(Collider other)
     {
         int layer = other.gameObject.layer;
@@ -48,7 +52,10 @@ public class Ball : MonoBehaviour
             else
             {
                 //release
-                DoRelease();
+                if(backTime > 1)
+                {
+                    DoRelease();
+                }
             }
         }
         else if(layer == LayerMask.NameToLayer(LayerName.BottomWall))
@@ -56,7 +63,10 @@ public class Ball : MonoBehaviour
             if (GameManager.Instance.IsPlayerRound)
             {
                 //release
-                DoRelease();
+                if (backTime > 1)
+                {
+                    DoRelease();
+                };
             }
             else
             {
@@ -82,7 +92,8 @@ public class Ball : MonoBehaviour
             float vertDis = Mathf.Abs(transform.localPosition.y - other.transform.localPosition.y);
             float horDis = Mathf.Abs(transform.localPosition.x - other.transform.localPosition.x);
 
-            bool useVert = vertDis >= horDis;
+            SpriteRenderer sp = other.gameObject.GetComponent<SpriteRenderer>();
+            bool useVert = (vertDis - sp.size.y/2) >= (horDis - sp.size.x/2);
 
             Vector2 normal;
             if(useVert)
@@ -101,6 +112,7 @@ public class Ball : MonoBehaviour
             //get skill
             SkillObject skill = other.GetComponent<SkillObject>();
             AddSkill(skill.m_data);
+            other.gameObject.SetActive(false);
         }
 
     }
@@ -121,20 +133,54 @@ public class Ball : MonoBehaviour
 
         m_direction = dir;
         m_isOnfire = true;
+        backTime = 0;
     }
 
     public void DoDamage(bool isPlayer)
     {
         m_isOnfire = false;
+        GameManager.Instance.DoDamage(this);
     }
 
     public void DoRelease()
     {
         m_isOnfire = false;
+        GameManager.Instance.DoRelease(this);
     }
 
+
+    public float m_damage
+    {
+        get
+        {
+            return m_baseAttack;
+        }
+    }
+
+    public float m_addAttack = 0;
+    public float m_crit = 0;
+    public float m_critDamage = 0;
+    public float m_vampire = 0;
+
+    //public float m_heal
+    
     public void AddSkill(SkillConfigItem skill)
     {
+        //switch(skill.Type)
+        //{
+        //    case SkillType.Attack:
+        //        m_addAttack += skill.Value;
+        //        break;
+        //    case SkillType.Crit:
+        //        m_crit += skill.Percent;
+        //        m_critDamage += skill.Value;
+        //        break;
+        //    case SkillType.Vampire:
+        //        m_vampire += skill.Value;
+        //        break;
+        //    case SkillType.Gas:
 
+        //        break;
+        //}
     }
 }
