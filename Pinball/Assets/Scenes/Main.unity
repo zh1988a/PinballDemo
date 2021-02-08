@@ -593,7 +593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610914009}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -7.8, z: 0}
+  m_LocalPosition: {x: 0, y: -8.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1038259933}
@@ -610,7 +610,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 4, z: 100}
+  m_Size: {x: 11, y: 4, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &858932183
 GameObject:
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0013a997a46304622b56bbfd3f9f332c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d882a7953ef3b4cd4a5d7103988a87d8, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1238,7 +1238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394512120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.62, z: 0}
+  m_LocalPosition: {x: 0, y: 8.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1038259933}
@@ -1255,7 +1255,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 4, z: 100}
+  m_Size: {x: 10.66, y: 4, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1409458083 stripped
 Transform:
