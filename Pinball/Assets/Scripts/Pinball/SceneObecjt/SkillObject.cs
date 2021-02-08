@@ -11,5 +11,6 @@ public class SkillObject : MonoBehaviour
         m_data = skill;
         //set iamge
         gameObject.GetComponent<SpriteRenderer>().sprite = Defines.Instance.GetSprite(skill.IconName);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

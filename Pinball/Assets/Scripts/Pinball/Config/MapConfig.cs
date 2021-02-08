@@ -24,5 +24,7 @@ public class MapConfig
             Configs[key].Index = key;
         }
     }
+
+    //public static MapConfigItem
 }
 

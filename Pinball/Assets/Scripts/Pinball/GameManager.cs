@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject GameRoot;
 
+    public List<Map> m_mapPrefabs;
+
     private void Awake()
     {
         _instance = this;
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
         m_playerLauncher.gameObject.SetActive(false);
         m_npcLauncher.gameObject.SetActive(false);
 
-        m_curMap.Init();
+        //m_curMap.Init();
     }
 
 
@@ -164,6 +166,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                RandomMap();
                 m_playerLauncher.gameObject.SetActive(true);
                 m_npcLauncher.gameObject.SetActive(false);
                 m_playerLauncher.DoRot();
@@ -184,6 +187,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                RandomMap();
                 m_playerLauncher.gameObject.SetActive(false);
                 m_npcLauncher.gameObject.SetActive(true);
                 m_npcLauncher.DoRot();
@@ -195,7 +199,31 @@ public class GameManager : MonoBehaviour
         {
             StartRound(m_curRound++);
         }
+    }
 
+    public void RandomMap()
+    {
+        if(m_curMap)
+        {
+            GameObject.Destroy(m_curMap.gameObject);
+            m_curMap = null;
+        }
+
+        List<Map> mapPool = new List<Map>();
+        foreach(Map map in m_mapPrefabs)
+        {
+            for(int i = 0; i < map.Weight; ++i)
+            {
+                mapPool.Add(map);
+            }
+        }
+        Random.seed = System.DateTime.Now.Millisecond;
+        int random = Random.RandomRange(0, mapPool.Count - 1);
+        m_curMap = GameObject.Instantiate(mapPool[random],GameRoot.transform);
+        m_curMap.transform.localPosition = Vector3.zero;
+        int rot = IsPlayerRound ? 0 : 180;
+        m_curMap.transform.localRotation = Quaternion.Euler(0, 0, rot);
+        m_curMap.Init();
     }
 
     public void ClickFire()

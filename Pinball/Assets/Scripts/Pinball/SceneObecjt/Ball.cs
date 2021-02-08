@@ -52,7 +52,7 @@ public class Ball : MonoBehaviour
             else
             {
                 //release
-                if(backTime > 1)
+                if(backTime > 0.1)
                 {
                     DoRelease();
                 }
@@ -63,7 +63,7 @@ public class Ball : MonoBehaviour
             if (GameManager.Instance.IsPlayerRound)
             {
                 //release
-                if (backTime > 1)
+                if (backTime > 0.1)
                 {
                     DoRelease();
                 };

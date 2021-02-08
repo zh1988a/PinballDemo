@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public int Weight = 1;
+
     private List<NPCFirePoint> m_firePoints;
     private NPCFirePoint m_targetPoint = null;
     public NPCFirePoint TargetPoint
@@ -12,6 +14,17 @@ public class Map : MonoBehaviour
         {
             if(!m_targetPoint)
             {
+                m_firePoints = new List<NPCFirePoint>();
+                GameObject fpParent = gameObject.transform.Find("NPCAttackPoint").gameObject;
+                NPCFirePoint[] fpList = fpParent.GetComponentsInChildren<NPCFirePoint>();
+                foreach (NPCFirePoint point in fpList)
+                {
+                    for (int i = 0; i < point.Weight; ++i)
+                    {
+                        m_firePoints.Add(point);
+                    }
+                }
+
                 Random.seed = System.DateTime.Now.Millisecond;
                 int randomIndex = Random.Range(0, m_firePoints.Count - 1);
                 m_targetPoint = m_firePoints[randomIndex];
@@ -28,16 +41,7 @@ public class Map : MonoBehaviour
 
     public void Init()
     {
-        m_firePoints = new List<NPCFirePoint>();
-        GameObject fpParent = gameObject.transform.Find("NPCAttackPoint").gameObject;
-        NPCFirePoint[] fpList = fpParent.GetComponentsInChildren<NPCFirePoint>();
-        foreach(NPCFirePoint point in fpList)
-        {
-            for(int i = 0; i < point.Weight; ++i)
-            {
-                m_firePoints.Add(point);
-            }
-        }
+       
 
         m_targetPoint = null;
 

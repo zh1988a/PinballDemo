@@ -29,8 +29,8 @@ public class Defines: MonoBehaviour
     {
         foreach(SpriteAtlas atlas in SpriteAtlas)
         {
-            Sprite[] sprites = new Sprite[atlas.spriteCount];
-            int count = atlas.GetSprites(sprites);
+            //Sprite[] sprites = new Sprite[atlas.spriteCount];
+            //int count = atlas.GetSprites(sprites);
             Sprite sp = atlas.GetSprite(name);
             if (sp) return sp;
         }
