@@ -25,10 +25,10 @@ public class Ball : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (m_isOnfire)
-        {
-            UpdatePosition();
-        }
+        //if (m_isOnfire)
+        //{
+        //    UpdatePosition();
+        //}
     }
 
     public void UpdatePosition()
@@ -41,10 +41,31 @@ public class Ball : MonoBehaviour
     float backTime = 0;
     public void OnTriggerEnter(Collider other)
     {
-        int layer = other.gameObject.layer;
-        if(layer == LayerMask.NameToLayer(LayerName.TopWall))
+        m_isInWall = true;
+        Trigger(other);
+    }
+
+    private bool m_isInWall = false;
+    public void OnTriggerStay(Collider other)
+    {
+        if(!m_isInWall)
         {
-            if(GameManager.Instance.IsPlayerRound)
+            m_isInWall = true;
+            Trigger(other);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        m_isInWall = false;
+    }
+
+    public void Trigger(Collider other)
+    {
+        int layer = other.gameObject.layer;
+        if (layer == LayerMask.NameToLayer(LayerName.TopWall))
+        {
+            if (GameManager.Instance.IsPlayerRound)
             {
                 //damage
                 DoDamage(false);
@@ -52,13 +73,13 @@ public class Ball : MonoBehaviour
             else
             {
                 //release
-                if(backTime > 0.1)
+                if (backTime > 0.1)
                 {
                     DoRelease();
                 }
             }
         }
-        else if(layer == LayerMask.NameToLayer(LayerName.BottomWall))
+        else if (layer == LayerMask.NameToLayer(LayerName.BottomWall))
         {
             if (GameManager.Instance.IsPlayerRound)
             {
@@ -93,10 +114,10 @@ public class Ball : MonoBehaviour
             float horDis = Mathf.Abs(transform.localPosition.x - other.transform.localPosition.x);
 
             SpriteRenderer sp = other.gameObject.GetComponent<SpriteRenderer>();
-            bool useVert = (vertDis - sp.size.y/2) >= (horDis - sp.size.x/2);
+            bool useVert = (vertDis - sp.size.y / 2) >= (horDis - sp.size.x / 2);
 
             Vector2 normal;
-            if(useVert)
+            if (useVert)
             {
                 normal = isHigher ? Vector2.up : Vector2.down;
             }
@@ -114,7 +135,6 @@ public class Ball : MonoBehaviour
             m_skills.Add(skill.m_data);
             other.gameObject.SetActive(false);
         }
-
     }
 
     public void DoReflect(Vector2 normal)

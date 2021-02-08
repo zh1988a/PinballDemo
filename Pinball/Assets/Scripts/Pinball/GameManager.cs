@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         m_playerLauncher.gameObject.SetActive(false);
         m_npcLauncher.gameObject.SetActive(false);
 
+        m_ingameUI.Init();
         //m_curMap.Init();
     }
 
@@ -86,7 +87,7 @@ public class GameManager : MonoBehaviour
         }
 
         //effect
-
+        m_ingameUI.RefreshHP();
 
         SwitchTurn();
     }
@@ -153,8 +154,8 @@ public class GameManager : MonoBehaviour
         if(IsPlayerRound)
         {
             m_player.OnSwitchTurn();
-
-            if(m_player.m_hp <=0)
+            m_ingameUI.RefreshHP();
+            if (m_player.m_hp <=0)
             {
                 return;
             }
@@ -175,7 +176,8 @@ public class GameManager : MonoBehaviour
         else
         {
             m_npc.OnSwitchTurn();
-            if(m_npc.m_hp <= 0)
+            m_ingameUI.RefreshHP();
+            if (m_npc.m_hp <= 0)
             {
                 return;
             }
@@ -238,7 +240,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region ingame ui
-
+    public Ingame m_ingameUI;
     #endregion
 
     #region out game ui
