@@ -29,6 +29,8 @@ public class SkillConfigItem
     public string Describe;
     //获得权重 整数
     public int Weight;
+    //是否固有技能
+    public int isStatic;
 }
 
 public class SkillConfig
@@ -42,5 +44,10 @@ public class SkillConfig
         {
             Configs[key].ID = key;
         }
+    }
+
+    public static SkillConfigItem Get(string id)
+    {
+        return Configs[id];
     }
 }

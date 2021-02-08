@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class Defines: MonoBehaviour
 {
@@ -19,8 +20,23 @@ public class Defines: MonoBehaviour
         _instance = this;
     }
 
-    public float BaseDamage = 1;
-    public float BaseHp;
+    public int BaseDamage = 1;
+    public int BaseHp;
+
+    public List<SpriteAtlas> SpriteAtlas;
+
+    public Sprite GetSprite(string name)
+    {
+        foreach(SpriteAtlas atlas in SpriteAtlas)
+        {
+            Sprite[] sprites = new Sprite[atlas.spriteCount];
+            int count = atlas.GetSprites(sprites);
+            Sprite sp = atlas.GetSprite(name);
+            if (sp) return sp;
+        }
+
+        return null;
+    }
 }
 
 public class LayerName

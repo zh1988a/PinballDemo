@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     {
         IsGameStart = false;
 
-        //SkillConfig.LoadConfig();
+        SkillConfig.LoadConfig();
         //MapConfig.LoadConfig();
 
         SimplePool.Preload(ballPrefab, 1);
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
         m_playerLauncher.gameObject.SetActive(false);
         m_npcLauncher.gameObject.SetActive(false);
 
+        m_curMap.Init();
     }
 
 
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     public int m_curRound = 1;
 
     public Ball m_curBall = null;
+    public Map m_curMap = null;
 
     public void DoDamage(Ball ball)
     {
@@ -119,6 +121,8 @@ public class GameManager : MonoBehaviour
         IsGameStart = true;
         //start round1
         StartRound(1);
+        IsPlayerRound = false;
+        SwitchTurn();
     }
 
     public void GameOver(bool isWin)
@@ -128,16 +132,17 @@ public class GameManager : MonoBehaviour
 
     public void StartRound(int roundIndex)
     {
-        m_curRound = 1;
+        m_curRound = roundIndex;
         //round ui
 
-        IsPlayerRound = false;
-        SwitchTurn();
+        
     }
 
     public void SwitchTurn()
     {
-        IsPlayerRound = false;
+        //IsPlayerRound = false;
+        
+
         IsPlayerRound = !IsPlayerRound;
 
         //player ui
@@ -145,18 +150,50 @@ public class GameManager : MonoBehaviour
         m_curBall.gameObject.SetActive(false);
         if(IsPlayerRound)
         {
-            //set ball
-            //m_curBall.transform.localPosition
-            //set lanucher
-            m_playerLauncher.gameObject.SetActive(true);
-            m_npcLauncher.gameObject.SetActive(false);
-            m_playerLauncher.DoRot();
+            m_player.OnSwitchTurn();
+
+            if(m_player.m_hp <=0)
+            {
+                return;
+            }
+
+            if (m_player.m_isIce)
+            {
+                m_player.m_isIce = false;
+                SwitchTurn();
+            }
+            else
+            {
+                m_playerLauncher.gameObject.SetActive(true);
+                m_npcLauncher.gameObject.SetActive(false);
+                m_playerLauncher.DoRot();
+            }
         }
         else
         {
-            m_playerLauncher.gameObject.SetActive(false);
-            m_npcLauncher.gameObject.SetActive(true);
-            m_npcLauncher.DoRot();
+            m_npc.OnSwitchTurn();
+            if(m_npc.m_hp <= 0)
+            {
+                return;
+            }
+
+            if (m_npc.m_isIce)
+            {
+                m_npc.m_isIce = false;
+                SwitchTurn();
+            }
+            else
+            {
+                m_playerLauncher.gameObject.SetActive(false);
+                m_npcLauncher.gameObject.SetActive(true);
+                m_npcLauncher.DoRot();
+                m_npcLauncher.StartAI();
+            }
+        }
+
+        if(!IsPlayerRound)
+        {
+            StartRound(m_curRound++);
         }
 
     }

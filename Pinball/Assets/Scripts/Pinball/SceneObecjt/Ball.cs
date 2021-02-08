@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
     public float m_speed;
     public float m_accelerate;
 
-    public float m_baseAttack;
+    public int m_baseAttack;
    
 
     public Vector2 m_direction;
@@ -111,7 +111,7 @@ public class Ball : MonoBehaviour
         {
             //get skill
             SkillObject skill = other.GetComponent<SkillObject>();
-            AddSkill(skill.m_data);
+            m_skills.Add(skill.m_data);
             other.gameObject.SetActive(false);
         }
 
@@ -134,6 +134,7 @@ public class Ball : MonoBehaviour
         m_direction = dir;
         m_isOnfire = true;
         backTime = 0;
+        m_skills.Clear();
     }
 
     public void DoDamage(bool isPlayer)
@@ -149,7 +150,7 @@ public class Ball : MonoBehaviour
     }
 
 
-    public float m_damage
+    public int m_damage
     {
         get
         {
@@ -157,30 +158,6 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public float m_addAttack = 0;
-    public float m_crit = 0;
-    public float m_critDamage = 0;
-    public float m_vampire = 0;
+    public List<SkillConfigItem> m_skills = new List<SkillConfigItem>();
 
-    //public float m_heal
-    
-    public void AddSkill(SkillConfigItem skill)
-    {
-        //switch(skill.Type)
-        //{
-        //    case SkillType.Attack:
-        //        m_addAttack += skill.Value;
-        //        break;
-        //    case SkillType.Crit:
-        //        m_crit += skill.Percent;
-        //        m_critDamage += skill.Value;
-        //        break;
-        //    case SkillType.Vampire:
-        //        m_vampire += skill.Value;
-        //        break;
-        //    case SkillType.Gas:
-
-        //        break;
-        //}
-    }
 }

@@ -4,104 +4,112 @@
       "Level": 1,
       "Percent": 0,
       "Round": 0,
-      "Value": 2,
+      "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1001",
       "EffectName": "",
-      "Name": "攻击力+2",
-      "Describe": "伤害增加2",
-      "Weight": null
+      "Name": "攻击力+1",
+      "Describe": "伤害增加1",
+      "Weight": 0,
+      "isStatic": 0
    },
    "1002": {
       "Type": 1,
       "Level": 2,
       "Percent": 0,
       "Round": 0,
-      "Value": 3,
+      "Value": 2,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1002",
       "EffectName": "",
-      "Name": "攻击力+3",
-      "Describe": "伤害增加3",
-      "Weight": null
+      "Name": "攻击力+2",
+      "Describe": "伤害增加2",
+      "Weight": 0,
+      "isStatic": 0
    },
    "1003": {
       "Type": 1,
       "Level": 3,
       "Percent": 0,
       "Round": 0,
-      "Value": 4,
+      "Value": 3,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1003",
       "EffectName": "",
-      "Name": "攻击力+4",
-      "Describe": "伤害增加4",
-      "Weight": 50
+      "Name": "攻击力+3",
+      "Describe": "伤害增加3",
+      "Weight": 50,
+      "isStatic": 0
    },
    "1004": {
       "Type": 1,
       "Level": 4,
       "Percent": 0,
       "Round": 0,
-      "Value": 3,
+      "Value": 4,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1004",
       "EffectName": "",
-      "Name": "攻击力+5",
-      "Describe": "伤害增加3",
-      "Weight": 20
+      "Name": "攻击力+4",
+      "Describe": "伤害增加4",
+      "Weight": 20,
+      "isStatic": 0
    },
    "1005": {
       "Type": 2,
       "Level": 1,
       "Percent": 0.1,
       "Round": 0,
-      "Value": 0.15,
+      "Value": 0.1,
       "ValueType": 2,
-      "IconName": "",
+      "IconName": "a_1005",
       "EffectName": "",
       "Name": "小小暴击率UP",
-      "Describe": "10%概率伤害增加15%",
-      "Weight": null
+      "Describe": "10%概率伤害增加10%",
+      "Weight": 0,
+      "isStatic": 0
    },
    "1006": {
       "Type": 2,
       "Level": 2,
       "Percent": 0.15,
       "Round": 0,
-      "Value": 0.15,
+      "Value": 0.1,
       "ValueType": 2,
-      "IconName": "",
+      "IconName": "a_1006",
       "EffectName": "",
       "Name": "小暴击率UP",
-      "Describe": "15%概率伤害增加15%",
-      "Weight": 50
+      "Describe": "15%概率伤害增加10%",
+      "Weight": 50,
+      "isStatic": 0
    },
    "1007": {
       "Type": 2,
       "Level": 3,
       "Percent": 0.2,
       "Round": 0,
-      "Value": 0.15,
+      "Value": 0.1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1007",
       "EffectName": "",
       "Name": "暴击率UP",
-      "Describe": "20%概率伤害增加15%",
-      "Weight": 20
+      "Describe": "20%概率伤害增加10%",
+      "Weight": 20,
+      "isStatic": 0
    },
    "1008": {
       "Type": 2,
       "Level": 4,
       "Percent": 0.25,
       "Round": 0,
-      "Value": 0.15,
+      "Value": 0.1,
       "ValueType": 2,
-      "IconName": "",
+      "IconName": "a_1008",
       "EffectName": "",
       "Name": "大暴击率UP",
-      "Describe": "25%概率伤害增加15%",
-      "Weight": null
+      "Describe": "25%概率伤害增加10%",
+      "Weight": 0,
+      "isStatic": 0
    },
    "1009": {
       "Type": 3,
@@ -110,11 +118,12 @@
       "Round": 0,
       "Value": 0.2,
       "ValueType": 2,
-      "IconName": "",
+      "IconName": "a_1009",
       "EffectName": "",
       "Name": "吸血",
       "Describe": "恢复伤害值的20%",
-      "Weight": null
+      "Weight": 0,
+      "isStatic": 0
    },
    "1010": {
       "Type": 3,
@@ -123,11 +132,12 @@
       "Round": 0,
       "Value": 0.3,
       "ValueType": 2,
-      "IconName": "",
+      "IconName": "a_1010",
       "EffectName": "",
       "Name": "嗜血",
       "Describe": "恢复伤害值的30%",
-      "Weight": null
+      "Weight": 0,
+      "isStatic": 0
    },
    "1011": {
       "Type": 3,
@@ -136,11 +146,12 @@
       "Round": 0,
       "Value": 0.4,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1011",
       "EffectName": "",
       "Name": "超级嗜血",
       "Describe": "恢复伤害值的40%",
-      "Weight": 50
+      "Weight": 50,
+      "isStatic": 0
    },
    "1012": {
       "Type": 3,
@@ -149,89 +160,96 @@
       "Round": 0,
       "Value": 0.45,
       "ValueType": 2,
-      "IconName": "",
+      "IconName": "a_1012",
       "EffectName": "",
       "Name": "嗜血狂魔",
       "Describe": "恢复伤害值的45%",
-      "Weight": 10
+      "Weight": 10,
+      "isStatic": 0
    },
    "1013": {
       "Type": 1,
       "Level": 1,
       "Percent": 0,
       "Round": 0,
-      "Value": 3,
+      "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1013",
       "EffectName": "",
-      "Name": "火焰伤害+3",
-      "Describe": "伤害增加3",
-      "Weight": null
+      "Name": "火焰伤害+1",
+      "Describe": "伤害增加1",
+      "Weight": 0,
+      "isStatic": 0
    },
    "1014": {
       "Type": 1,
       "Level": 2,
       "Percent": 0,
       "Round": 0,
-      "Value": 5,
+      "Value": 2,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1014",
       "EffectName": "",
-      "Name": "火焰伤害+5",
-      "Describe": "伤害增加5",
-      "Weight": 50
+      "Name": "火焰伤害+2",
+      "Describe": "伤害增加2",
+      "Weight": 50,
+      "isStatic": 0
    },
    "1015": {
       "Type": 1,
       "Level": 3,
       "Percent": 0,
       "Round": 0,
-      "Value": 8,
+      "Value": 3,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1015",
       "EffectName": "",
-      "Name": "火焰伤害+8",
-      "Describe": "伤害增加8",
-      "Weight": 10
+      "Name": "火焰伤害+3",
+      "Describe": "伤害增加3",
+      "Weight": 10,
+      "isStatic": 0
    },
    "1016": {
       "Type": 1,
       "Level": 1,
       "Percent": 0,
       "Round": 0,
-      "Value": 3,
+      "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1016",
       "EffectName": "",
-      "Name": "闪电伤害+3",
-      "Describe": "伤害增加3",
-      "Weight": null
+      "Name": "闪电伤害+1",
+      "Describe": "伤害增加1",
+      "Weight": 0,
+      "isStatic": 0
    },
    "1017": {
       "Type": 1,
       "Level": 2,
       "Percent": 0,
       "Round": 0,
-      "Value": 5,
+      "Value": 2,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1017",
       "EffectName": "",
-      "Name": "闪电伤害+5",
-      "Describe": "伤害增加5",
-      "Weight": 40
+      "Name": "闪电伤害+2",
+      "Describe": "伤害增加2",
+      "Weight": 40,
+      "isStatic": 0
    },
    "1018": {
       "Type": 1,
       "Level": 3,
       "Percent": 0,
       "Round": 0,
-      "Value": 8,
+      "Value": 3,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1018",
       "EffectName": "",
-      "Name": "闪电伤害+8",
-      "Describe": "伤害增加8",
-      "Weight": 30
+      "Name": "闪电伤害+3",
+      "Describe": "伤害增加3",
+      "Weight": 30,
+      "isStatic": 0
    },
    "1019": {
       "Type": 5,
@@ -240,11 +258,12 @@
       "Round": 2,
       "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1019",
       "EffectName": "",
       "Name": "毒气伤害+1",
       "Describe": "2个回合固定受到伤害1",
-      "Weight": null
+      "Weight": 0,
+      "isStatic": 0
    },
    "1020": {
       "Type": 5,
@@ -253,11 +272,12 @@
       "Round": 2,
       "Value": 2,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1020",
       "EffectName": "",
       "Name": "毒气伤害+2",
       "Describe": "2个回合固定受到伤害2",
-      "Weight": 40
+      "Weight": 40,
+      "isStatic": 0
    },
    "1021": {
       "Type": 5,
@@ -266,11 +286,12 @@
       "Round": 2,
       "Value": 3,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1021",
       "EffectName": "",
       "Name": "毒气伤害+3",
       "Describe": "2个回合固定受到伤害3",
-      "Weight": 30
+      "Weight": 30,
+      "isStatic": 0
    },
    "1022": {
       "Type": 7,
@@ -279,11 +300,12 @@
       "Round": 0,
       "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1022",
       "EffectName": "",
       "Name": "治疗+1",
       "Describe": "增加血量1",
-      "Weight": 40
+      "Weight": 40,
+      "isStatic": 0
    },
    "1023": {
       "Type": 7,
@@ -292,11 +314,12 @@
       "Round": 0,
       "Value": 2,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1023",
       "EffectName": "",
       "Name": "治疗+2",
       "Describe": "增加血量2",
-      "Weight": 30
+      "Weight": 30,
+      "isStatic": 0
    },
    "1024": {
       "Type": 7,
@@ -305,11 +328,12 @@
       "Round": 0,
       "Value": 3,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1024",
       "EffectName": "",
       "Name": "治疗+3",
       "Describe": "增加血量3",
-      "Weight": 20
+      "Weight": 20,
+      "isStatic": 0
    },
    "1025": {
       "Type": 8,
@@ -318,11 +342,12 @@
       "Round": 0,
       "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1025",
       "EffectName": "",
       "Name": "小血包",
       "Describe": "生命上限值+1",
-      "Weight": 50
+      "Weight": 50,
+      "isStatic": 0
    },
    "1026": {
       "Type": 8,
@@ -331,11 +356,12 @@
       "Round": 0,
       "Value": 2,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1026",
       "EffectName": "",
       "Name": "大血包",
       "Describe": "生命上限值+2",
-      "Weight": 40
+      "Weight": 40,
+      "isStatic": 0
    },
    "1027": {
       "Type": 4,
@@ -344,11 +370,12 @@
       "Round": 1,
       "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1027",
       "EffectName": "",
       "Name": "冰冻",
-      "Describe": "下个回合致使敌方攻击miss",
-      "Weight": 30
+      "Describe": "下个回合致使敌方攻击miss（关卡内随机代替指定技能）",
+      "Weight": 30,
+      "isStatic": 1
    },
    "1028": {
       "Type": 6,
@@ -357,10 +384,11 @@
       "Round": 1,
       "Value": 1,
       "ValueType": 1,
-      "IconName": "",
+      "IconName": "a_1028",
       "EffectName": "",
       "Name": "无敌",
-      "Describe": "下回合被敌方攻击免疫伤害",
-      "Weight": 30
+      "Describe": "下回合被敌方攻击免疫伤害（关卡内随机代替指定技能）",
+      "Weight": 30,
+      "isStatic": 1
    }
 }
