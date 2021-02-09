@@ -265,6 +265,11 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if(m_curBall.m_isOnfire || m_curBall.gameObject.activeSelf == true)
+        {
+            return;
+        }
+
         m_playerLauncher.OnFire();
     }
 
