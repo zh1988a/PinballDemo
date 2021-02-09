@@ -134,6 +134,11 @@ public class Ball : MonoBehaviour
             SkillObject skill = other.GetComponent<SkillObject>();
             m_skills.Add(skill.m_data);
             other.gameObject.SetActive(false);
+
+            if(m_skills.Count >= GameManager.Instance.m_curMap.SkillCount)
+            {
+                GameManager.Instance.m_ingameUI.ShowPerfect(true);
+            }
         }
     }
 

@@ -73,10 +73,10 @@ public class Launcher : MonoBehaviour
 
     public void StartAI()
     {
-        if(GameManager.Instance.IsPlayerRound)
-        {
-            return;
-        }
+        //if(GameManager.Instance.IsPlayerRound)
+        //{
+        //    return;
+        //}
 
         m_isInAI = true;
     }

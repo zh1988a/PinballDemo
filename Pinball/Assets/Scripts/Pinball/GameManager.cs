@@ -33,30 +33,35 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
+
+        SkillConfig.LoadConfig();
+        //MapConfig.LoadConfig();
+        PlayerData.Instance.Init();
+
+        SimplePool.Preload(ballPrefab, 1);
+
+        m_curBall = SimplePool.Spawn(ballPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0)).GetComponent<Ball>();
+        m_curBall.transform.parent = GameRoot.transform;
+        m_curBall.gameObject.SetActive(false);
+
         Init();
 
         //start ui
-
-        StartGame();
+        //StartGame();
     }
 
     public void Init()
     {
+
         IsGameStart = false;
-
-        SkillConfig.LoadConfig();
-        //MapConfig.LoadConfig();
-
-        SimplePool.Preload(ballPrefab, 1);
-
-        m_curBall = SimplePool.Spawn(ballPrefab,Vector3.zero,Quaternion.Euler(0,0,0)).GetComponent<Ball>();
-        m_curBall.transform.parent = GameRoot.transform;
-        m_curBall.gameObject.SetActive(false);
 
         m_playerLauncher.gameObject.SetActive(false);
         m_npcLauncher.gameObject.SetActive(false);
 
         m_ingameUI.Init();
+        OpenMainUI();
+
         //m_curMap.Init();
     }
 
@@ -88,6 +93,7 @@ public class GameManager : MonoBehaviour
 
         //effect
         m_ingameUI.RefreshHP();
+        m_ingameUI.RefreshBuff();
 
         SwitchTurn();
     }
@@ -108,6 +114,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        OpenIngameUI();
+
         m_player = new Player();
         m_player.Init(true);
         m_npc = new Player();
@@ -123,23 +131,23 @@ public class GameManager : MonoBehaviour
 
         IsGameStart = true;
         //start round1
-        StartRound(1);
+        //StartRound(1);
         IsPlayerRound = false;
         SwitchTurn();
     }
 
     public void GameOver(bool isWin)
     {
-        
+        OpenGameOverUI(isWin);
     }
 
-    public void StartRound(int roundIndex)
-    {
-        m_curRound = roundIndex;
-        //round ui
+    //public void StartRound(int roundIndex)
+    //{
+    //    m_curRound = roundIndex;
+    //    //round ui
 
         
-    }
+    //}
 
     public void SwitchTurn()
     {
@@ -147,15 +155,27 @@ public class GameManager : MonoBehaviour
         
 
         IsPlayerRound = !IsPlayerRound;
+        m_curBall.gameObject.SetActive(false);
 
         //player ui
+        m_ingameUI.ShowTurn(true, IsPlayerRound);
+        
 
-        m_curBall.gameObject.SetActive(false);
-        if(IsPlayerRound)
+        //if(!IsPlayerRound)
+        //{
+        //    StartRound(m_curRound++);
+        //}
+    }
+
+    public void DelayTurn()
+    {
+        m_ingameUI.ShowTurn(false, IsPlayerRound);
+        if (IsPlayerRound)
         {
             m_player.OnSwitchTurn();
             m_ingameUI.RefreshHP();
-            if (m_player.m_hp <=0)
+            m_ingameUI.RefreshBuff();
+            if (m_player.m_hp <= 0)
             {
                 return;
             }
@@ -163,7 +183,8 @@ public class GameManager : MonoBehaviour
             if (m_player.m_isIce)
             {
                 m_player.m_isIce = false;
-                SwitchTurn();
+                //SwitchTurn();
+                m_ingameUI.ShowMiss(true);
             }
             else
             {
@@ -177,6 +198,7 @@ public class GameManager : MonoBehaviour
         {
             m_npc.OnSwitchTurn();
             m_ingameUI.RefreshHP();
+            m_ingameUI.RefreshBuff();
             if (m_npc.m_hp <= 0)
             {
                 return;
@@ -185,7 +207,7 @@ public class GameManager : MonoBehaviour
             if (m_npc.m_isIce)
             {
                 m_npc.m_isIce = false;
-                SwitchTurn();
+                m_ingameUI.ShowMiss(true);
             }
             else
             {
@@ -196,11 +218,12 @@ public class GameManager : MonoBehaviour
                 m_npcLauncher.StartAI();
             }
         }
+    }
 
-        if(!IsPlayerRound)
-        {
-            StartRound(m_curRound++);
-        }
+    public void DelayMiss()
+    {
+        m_ingameUI.ShowMiss(false);
+        SwitchTurn();
     }
 
     public void RandomMap()
@@ -239,11 +262,85 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region ingame ui
+    #region ui
     public Ingame m_ingameUI;
-    #endregion
+    public GameObject m_mainUI;
+    public GameObject m_vsUI;
+    public GameOver m_gameoverUI;
+    public SkillSelect m_skillSelectUI;
 
-    #region out game ui
+    public void CloseAllUI()
+    {
+        m_ingameUI.gameObject.SetActive(false);
+        m_mainUI.gameObject.SetActive(false);
+        m_vsUI.gameObject.SetActive(false);
+        m_gameoverUI.gameObject.SetActive(false);
+        m_skillSelectUI.gameObject.SetActive(false);
+    }
 
+    public void OnClickStartButton()
+    {
+        //OpenVSUI();
+        OpenSkillSelectUI();
+    }
+
+    public void OnVsTweenEnd()
+    {
+        m_vsUI.gameObject.SetActive(false);
+        StartGame();
+    }
+
+    public void OpenMainUI()
+    {
+        CloseAllUI();
+        m_mainUI.gameObject.SetActive(true);
+    }
+
+    public void OpenIngameUI()
+    {
+        CloseAllUI();
+        m_ingameUI.gameObject.SetActive(true);
+        m_ingameUI.Init();
+    }
+
+    public void OpenVSUI()
+    {
+        CloseAllUI();
+        m_vsUI.gameObject.SetActive(true);
+    }
+
+    public void OpenGameOverUI(bool isWin)
+    {
+        CloseAllUI();
+        m_gameoverUI.gameObject.SetActive(true);
+        m_gameoverUI.Init(isWin);
+    }
+
+    public void OpenSkillSelectUI()
+    {
+        CloseAllUI();
+        m_skillSelectUI.gameObject.SetActive(true);
+        m_skillSelectUI.Init();
+    }
+
+    public void OnTurnTweenEnd()
+    {
+        DelayTurn();
+    }
+
+    public void OnMissTweenEnd()
+    {
+        DelayMiss();
+    }
+
+    public void OnPerfectTweenEnd()
+    {
+        m_ingameUI.ShowPerfect(false);
+    }
+
+    public void OnClickGameOver()
+    {
+        Init();
+    }
     #endregion
 }

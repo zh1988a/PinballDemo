@@ -34,27 +34,61 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 0ca14d1090f3347bea6bfb7458cb485b, type: 3}
   - {fileID: 21300000, guid: cacb4191b9e9c4e7d9e96fc0b57536d0, type: 3}
+  - {fileID: 21300000, guid: 5d3632a1c25a649ef868ce5ef703fe53, type: 3}
+  - {fileID: 21300000, guid: f257b14278e8b41d1b8d33d332e44843, type: 3}
+  - {fileID: 21300000, guid: 2c152bb2dae444e19adb31ecbe1d6e67, type: 3}
+  - {fileID: 21300000, guid: 163917133618440468b3ca488fd64e1f, type: 3}
+  - {fileID: 21300000, guid: 054c5e6335ba44fbb80f38a1c8ed1120, type: 3}
+  - {fileID: 21300000, guid: 3c838ea3e3af64b03804717b5bcdbe59, type: 3}
+  - {fileID: 21300000, guid: 07699c64fb7b5483493a52fca48461a4, type: 3}
+  - {fileID: 21300000, guid: a31b7585c78db414e90cc3e48af4b165, type: 3}
+  - {fileID: 21300000, guid: 00b89526389094cb29ea181de64aef32, type: 3}
   - {fileID: 21300000, guid: 86a7cc362acd94a97a2b73381c8c66b9, type: 3}
+  - {fileID: 21300000, guid: 6a1d66d658ad04d10a3b940cf6c197ad, type: 3}
   - {fileID: 21300000, guid: 83440018eea5342958ab2627eb7572fd, type: 3}
   - {fileID: 21300000, guid: 1af78998ad45345c99cffba7c7ee3006, type: 3}
+  - {fileID: 21300000, guid: fa061e19bae01417089e3e2e858043a6, type: 3}
   - {fileID: 21300000, guid: 93fa40991a17a49e0a9e4099f66ca004, type: 3}
+  - {fileID: 21300000, guid: 90f127a9d6e1e4559ac00addf31eb343, type: 3}
+  - {fileID: 21300000, guid: 2ba4d64aff5574f3e876e6a472ffea37, type: 3}
   - {fileID: 21300000, guid: 257818aa4ec004387b665d04870fae4c, type: 3}
   - {fileID: 21300000, guid: f9f47c3b884d140b099e79bee1d92664, type: 3}
+  - {fileID: 21300000, guid: 160ce1fc2698f486796f8272c0b6b4a1, type: 3}
+  - {fileID: 21300000, guid: 85eaec3dbb75e449180b8114f334bb99, type: 3}
   - {fileID: 21300000, guid: 2b94cd4d7a6ba46adba85924269e3373, type: 3}
   - {fileID: 21300000, guid: 3e9ef07dbf6ee4190aa62eae99bd0e1e, type: 3}
+  - {fileID: 21300000, guid: f2ee926eb762643d58069ef59f05dca9, type: 3}
   - {fileID: 21300000, guid: 5424ce9e119ea471181a097552e2ec28, type: 3}
   - {fileID: 21300000, guid: c472cc4f8d0a944378ef7a754b898e7c, type: 3}
   m_PackedSpriteNamesToIndex:
+  - a_1007
   - a_1027
+  - a_1021
+  - a_1023
+  - a_1025
+  - a_1012
+  - a_1003
+  - a_1015
+  - a_1011
+  - a_1024
+  - a_1017
   - a_1008
+  - a_1020
   - a_1001
   - a_1022
+  - a_1018
   - a_1002
+  - a_1004
+  - a_1014
   - a_1019
   - a_1009
+  - a_1006
+  - a_1028
   - a_1013
   - a_1010
+  - a_1026
   - a_1005
   - a_1016
   m_Tag: Skills
