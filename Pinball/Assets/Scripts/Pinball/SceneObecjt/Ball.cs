@@ -13,6 +13,7 @@ public class Ball : MonoBehaviour
     public Vector2 m_direction;
 
     public bool m_isOnfire = false;
+    private bool m_isPerfect = false;
 
     private void Update()
     {
@@ -137,6 +138,7 @@ public class Ball : MonoBehaviour
 
             if(m_skills.Count >= GameManager.Instance.m_curMap.SkillCount)
             {
+                m_isPerfect = true;
                 GameManager.Instance.m_ingameUI.ShowPerfect(true);
             }
         }
@@ -144,6 +146,7 @@ public class Ball : MonoBehaviour
 
     public void DoReflect(Vector2 normal)
     {
+        AudioPlayer.Instance.PlayCollid();
         m_direction = Vector2.Reflect(m_direction, normal);
     }
 
@@ -160,10 +163,19 @@ public class Ball : MonoBehaviour
         m_isOnfire = true;
         backTime = 0;
         m_skills.Clear();
+        m_isPerfect = false;
     }
 
     public void DoDamage(bool isPlayer)
     {
+        if(m_isPerfect)
+        {
+            AudioPlayer.Instance.PlayPerfect();
+        }
+        else
+        {
+            AudioPlayer.Instance.PlayDamage();
+        }
         m_isOnfire = false;
         GameManager.Instance.DoDamage(this);
     }
