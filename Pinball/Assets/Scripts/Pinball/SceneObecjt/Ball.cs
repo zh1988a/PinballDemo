@@ -110,10 +110,10 @@ public class Ball : MonoBehaviour
         else if (layer == LayerMask.NameToLayer(LayerName.Obstacle))
         {
             //check pos
-            bool isHigher = transform.localPosition.y > other.transform.localPosition.y;
-            bool isRighter = transform.localPosition.x > other.transform.localPosition.x;
-            float vertDis = Mathf.Abs(transform.localPosition.y - other.transform.localPosition.y);
-            float horDis = Mathf.Abs(transform.localPosition.x - other.transform.localPosition.x);
+            bool isHigher = transform.position.y > other.transform.position.y;
+            bool isRighter = transform.position.x > other.transform.position.x;
+            float vertDis = Mathf.Abs(transform.position.y - other.transform.position.y);
+            float horDis = Mathf.Abs(transform.position.x - other.transform.position.x);
 
             SpriteRenderer sp = other.gameObject.GetComponent<SpriteRenderer>();
             bool useVert = (vertDis - sp.size.y / 2) >= (horDis - sp.size.x / 2);
@@ -137,9 +137,13 @@ public class Ball : MonoBehaviour
             m_skills.Add(skill.m_data);
             other.gameObject.SetActive(false);
 
-            GameManager.Instance.GetTrails(m_skills.Count - 3, this);
+            if(m_skills.Count >= 4)
+            {
+                GameManager.Instance.GetTrails(m_skills.Count - 3, this);
+            }
+            
 
-            if(m_skills.Count >= GameManager.Instance.m_curMap.SkillCount)
+            if(m_skills.Count == 6)
             {
                 m_isPerfect = true;
                 GameManager.Instance.m_ingameUI.ShowPerfect(true);

@@ -7,6 +7,7 @@ public class AudioPlayer : MonoBehaviour
     public AudioSource collid;
     public AudioSource damage;
     public AudioSource perfect;
+    public AudioSource bgm;
 
     public static AudioPlayer Instance;
 
@@ -76,5 +77,15 @@ public class AudioPlayer : MonoBehaviour
     public void PlayPerfect()
     {
         perfect.Play();
+    }
+
+    public void PlayBgm()
+    {
+        bgm.Play();
+    }
+
+    public void StopBgm()
+    {
+        bgm.Stop();
     }
 }

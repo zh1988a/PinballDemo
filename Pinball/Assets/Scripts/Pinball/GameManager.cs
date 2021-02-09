@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        AudioPlayer.Instance.PlayBgm();
         OpenIngameUI();
 
         m_player = new Player();
@@ -125,7 +126,7 @@ public class GameManager : MonoBehaviour
         m_npc.Init(false);
 
         m_curBall.gameObject.SetActive(false);
-        GetTrails(-1, m_curBall);
+        GetTrails(0, m_curBall);
 
         //launcher init pos,rot
         m_playerLauncher.gameObject.SetActive(false);
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(bool isWin)
     {
+        AudioPlayer.Instance.StopBgm();
         OpenGameOverUI(isWin);
     }
 
@@ -160,7 +162,7 @@ public class GameManager : MonoBehaviour
 
         IsPlayerRound = !IsPlayerRound;
         m_curBall.gameObject.SetActive(false);
-        GetTrails(-1, m_curBall);
+        GetTrails(0, m_curBall);
 
         //player ui
         m_ingameUI.ShowTurn(true, IsPlayerRound);

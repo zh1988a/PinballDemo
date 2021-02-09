@@ -45,7 +45,13 @@ public class Launcher : MonoBehaviour
             Ray ray = new Ray(ori, tar);
 
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit/*,100,LayerMask.NameToLayer("FirePoint")*/))
+            //int layer = LayerMask.NameToLayer("FirePoint");
+            //layer = ~layer;
+            //int layer = (1 << 8) | (1 << 9) | (1 << 10) | (1 << 11) | (1 << 12) | (1 << 13) | (1 << 14);
+            int layer = 1<<15;
+            if (Physics.Raycast(ray, out hit, 100,layer))
+            //if (Physics.Raycast(ray, out hit,100,
+                //LayerMask.NameToLayer("TopWall") | LayerMask.NameToLayer("BottomWall") | LayerMask.NameToLayer("LeftWall") | LayerMask.NameToLayer("RightWall") | LayerMask.NameToLayer("Obstacle") | LayerMask.NameToLayer("Skill")))
             {
                 //Debug.Log("")
                 if(hit.collider.gameObject == GameManager.Instance.m_curMap.TargetPoint.gameObject)

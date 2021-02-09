@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weight: 20
+  SkillCount: 0
 --- !u!1 &7362937128914072533
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7362937128914072532}
   m_Layer: 0
-  m_Name: 'NPCAttackPoint '
+  m_Name: NPCAttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
