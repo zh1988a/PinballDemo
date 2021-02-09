@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public List<Map> m_mapPrefabs;
 
+    public List<Follower> m_trails;
+
     private void Awake()
     {
         _instance = this;
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
         SkillConfig.LoadConfig();
         //MapConfig.LoadConfig();
@@ -101,7 +103,8 @@ public class GameManager : MonoBehaviour
     public void DoRelease(Ball ball)
     {
         //if()
-        SwitchTurn();
+        m_ingameUI.ShowMiss(true);
+        //SwitchTurn();
     }
 
     public void FireBall(Vector2 dir)
@@ -122,6 +125,7 @@ public class GameManager : MonoBehaviour
         m_npc.Init(false);
 
         m_curBall.gameObject.SetActive(false);
+        GetTrails(-1, m_curBall);
 
         //launcher init pos,rot
         m_playerLauncher.gameObject.SetActive(false);
@@ -156,6 +160,7 @@ public class GameManager : MonoBehaviour
 
         IsPlayerRound = !IsPlayerRound;
         m_curBall.gameObject.SetActive(false);
+        GetTrails(-1, m_curBall);
 
         //player ui
         m_ingameUI.ShowTurn(true, IsPlayerRound);
@@ -259,6 +264,23 @@ public class GameManager : MonoBehaviour
         }
 
         m_playerLauncher.OnFire();
+    }
+
+    public void GetTrails(int level,Ball ball)
+    {
+        for(int i = 0; i < m_trails.Count; ++i)
+        {
+            if(i == level)
+            {
+                m_trails[i].gameObject.SetActive(true);
+                m_trails[i].transform.localPosition = ball.transform.localPosition;
+                m_trails[i].FollowObj = ball.transform;
+            }
+            else
+            {
+                m_trails[i].gameObject.SetActive(false);
+            }
+        }
     }
     #endregion
 

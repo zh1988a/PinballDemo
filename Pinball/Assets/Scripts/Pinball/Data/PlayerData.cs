@@ -74,7 +74,7 @@ public class PlayerData
             m_skillIDs = new List<bool>();
             for(int i = 0; i <= 26; ++i)
             {
-                if(i == 1 || i == 2 || i ==5 || i ==9 || i ==10 || i == 13)
+                if(i == 1 || i == 2 || i ==5 || i == 8||i ==9 || i ==10 || i == 13 || i == 16 || i ==19)
                 {
                     m_skillIDs.Add(true);
                 }

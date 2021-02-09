@@ -17,49 +17,50 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        if(m_isOnfire)
-        {
-            backTime += Time.deltaTime;
-            UpdatePosition();
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        //if (m_isOnfire)
+        //if(m_isOnfire)
         //{
+        //    backTime += Time.deltaTime;
         //    UpdatePosition();
         //}
     }
 
+    private void FixedUpdate()
+    {
+        if (m_isOnfire)
+        {
+            backTime += Time.fixedDeltaTime;
+            UpdatePosition();
+        }
+    }
+
     public void UpdatePosition()
     {
-        float moveX = m_direction.x * m_speed * Time.deltaTime;
-        float moveY = m_direction.y * m_speed * Time.deltaTime;
+        float moveX = m_direction.x * m_speed * Time.fixedDeltaTime;
+        float moveY = m_direction.y * m_speed * Time.fixedDeltaTime;
         transform.localPosition = new Vector3(transform.localPosition.x + moveX, transform.localPosition.y + moveY, 0);
     }
 
     float backTime = 0;
     public void OnTriggerEnter(Collider other)
     {
-        m_isInWall = true;
+        //m_isInWall = true;
         Trigger(other);
     }
 
-    private bool m_isInWall = false;
-    public void OnTriggerStay(Collider other)
-    {
-        if(!m_isInWall)
-        {
-            m_isInWall = true;
-            Trigger(other);
-        }
-    }
+    //private bool m_isInWall = false;
+    //public void OnTriggerStay(Collider other)
+    //{
+    //    if(!m_isInWall)
+    //    {
+    //        m_isInWall = true;
+    //        Trigger(other);
+    //    }
+    //}
 
-    public void OnTriggerExit(Collider other)
-    {
-        m_isInWall = false;
-    }
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    m_isInWall = false;
+    //}
 
     public void Trigger(Collider other)
     {
@@ -135,6 +136,8 @@ public class Ball : MonoBehaviour
             SkillObject skill = other.GetComponent<SkillObject>();
             m_skills.Add(skill.m_data);
             other.gameObject.SetActive(false);
+
+            GameManager.Instance.GetTrails(m_skills.Count - 3, this);
 
             if(m_skills.Count >= GameManager.Instance.m_curMap.SkillCount)
             {
